@@ -9,7 +9,7 @@ function dscount({text, symbol1, symbol2}) {
     let count = 0;
 
     function recursiveFunc(text) {
-        let str = text.replace(regex, () => {
+        const str = text.replace(regex, () => {
             count++;
             return uppercaseSymbol1 === uppercaseSymbol2 ? uppercaseSymbol1 : '';
         });
