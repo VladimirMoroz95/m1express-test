@@ -1,3 +1,5 @@
+"use strict";
+
 function drawRating(vote) {
   switch(true) {
     case vote < 0: return 'failed';

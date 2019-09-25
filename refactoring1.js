@@ -1,3 +1,5 @@
+"use strict";
+
 function func(s, a, b) {
 
   if (s.match(/^$/)) {
