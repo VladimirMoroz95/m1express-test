@@ -8,11 +8,17 @@ function dscount({text, symbol1, symbol2}) {
     let uppercaseText = text.toUpperCase();
     let count = 0;
 
-    uppercaseText.replace(regex, () => {
-        count++;
-        return uppercaseSymbol1 === uppercaseSymbol2 ? uppercaseSymbol1 : '';
-    });
+    function recursiveFunc(text) {
+        let str = text.replace(regex, () => {
+            count++;
+            return uppercaseSymbol1 === uppercaseSymbol2 ? uppercaseSymbol1 : '';
+        });
+        if (regex.test(str)) {
+            recursiveFunc(str);
+        }
+    }
 
+    recursiveFunc(uppercaseText);
     return count
 }
 
@@ -33,7 +39,7 @@ function testTask1() {
         test(dscount, {text: '_ba______', symbol1: 'a', symbol2: 'b'}, 0);
         test(dscount, {text: '_a__b____', symbol1: 'a', symbol2: 'b'}, 0);
         test(dscount, {text: '-ab-аb-ab', symbol1: 'a', symbol2: 'b'}, 2);
-        //test(dscount, {text: 'aAa', symbol1: 'a', symbol2: 'a'}, 2);
+        test(dscount, {text: 'aAa', symbol1: 'a', symbol2: 'a'}, 2);
 
         span.textContent = 'Congratulations! All tests passed.';
         console.info("Congratulations! All tests passed.");
